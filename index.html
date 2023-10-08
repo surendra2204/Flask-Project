@@ -1,0 +1,85 @@
+{% extends 'partials/base.html' %}
+{% block title %} Home {% endblock %} <br/>
+{% block content %}
+<!DOCTYPE html>
+  <html>
+    <body>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card shadow">
+              <div class="card-header">Statistics</div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="card">
+                      <div class="card-body">
+                        <h6>Total</h6>
+                        <p class="text-center">{{ total_todo }}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="card">
+                      <div class="card-body">
+                        <h6>Completed</h6>
+                        <p class="text-center">{{ completed_todo }}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="card">
+                      <div class="card-body">
+                        <h6>Uncompleted</h6>
+                        <p class="text-center">{{ uncompleted_todo }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card shadow">
+              <div class="card-header">Todo-Form</div>
+              <div class="card-body">
+                <form action="/add" method="post">
+                  <label>Title</label>
+                  <input class="form-control" type="text" id="name" name="name" placeholder="Add your Todo.." />
+                  <input class="btn btn-primary mt-2 btn-sm" type="submit" value="Add" />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br/>
+        {% if total_todo == 0 %}
+        <marquee class="mt-3 mb-3" behavior="scroll" scrollamount="12" direction="left">You have nothing in your Todo's List..</marquee>
+        {% endif %}
+        <div class="row">
+          <div class="col-md-9">
+            <div class="card shadow">
+              <div class="card-header">History</div>
+              <div class="card-body">
+                {% for todo in todo_list %}
+                <div class="col-md-8">
+                  <h6>{{ loop.index }}. {{ todo.title }}</h6>
+                </div>
+                <div class="col-md-4">
+                  {% if todo.complete == False %}
+                  <span class="badge bg-warning">Not Complete</span>
+                  {% else %}
+                  <span class="badge bg-success">Complete</span>
+                  {% endif %}
+                  &nbsp;<a class="btn btn-info btn-sm" href="/update/{{ todo.id }}">Update</a>
+                  &nbsp;<a class="btn btn-danger btn-sm" href="/delete/{{ todo.id }}">Delete</a>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+  </html>
+{% endblock %}
