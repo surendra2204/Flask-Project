@@ -1,3 +1,2 @@
 # Flask-Project
-This is a simple TODO Application which has been done as my personal project. 
-Modified!!
+This is a simple Task Management Application which has been done as my personal project.
