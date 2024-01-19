@@ -1,0 +1,36 @@
+{% extends 'partials/base.html' %}
+{% block title %} Update Task {% endblock %}
+{% block content %}
+  <div class="container">
+    <h1>Update Task</h1>
+    <form method="POST" action="{{ url_for('update', todo_id=todo.id) }}">
+      {{ form.hidden_tag() }}
+      <br/>
+      <div class="form-group">
+        <label for="{{ form.title.id }}" class="form-label">Task Title:</label>
+        {{ form.title(class="form-control") }}
+        {% for error in form.title.errors %}
+          <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+      </div>
+      <br/>
+      <div class="form-group form-check">
+        {{ form.complete(class="form-check-input") }}
+        <label class="form-check-label" for="{{ form.complete.id }}">Mark as Complete</label>
+        {% for error in form.complete.errors %}
+          <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+      </div>
+      <br/>
+        <div class="form-group">
+            <label for="{{ form.deadline.id }}" class="form-label">Deadline:</label>
+            {{ form.deadline(class="form-control") }}
+            {% for error in form.deadline.errors %}
+                <span class="text-danger">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <br/>
+      <button type="submit" class="btn btn-primary">Update Task</button>
+    </form>
+  </div>
+{% endblock %}

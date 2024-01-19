@@ -1,0 +1,27 @@
+{% extends 'partials/base.html' %}
+{% block title %} Add Task {% endblock %}
+{% block content %}
+  <div class="container">
+    <h1>Add Task</h1>
+    <form method="POST" action="{{ url_for('add') }}">
+      {{ form.hidden_tag() }}
+      <br/>
+      <div class="form-group">
+        {{ form.title.label(class="form-label") }}
+        {{ form.title(class="form-control") }}
+      </div>
+      <br/>
+      <div class="form-group">
+        {{ form.email.label(class="form-label") }}
+        {{ form.email(class="form-control") }}
+      </div>
+      <br/>
+      <div class="form-group">
+        {{ form.deadline.label(class="form-label") }}
+        {{ form.deadline(class="form-control") }}
+      </div>
+      <br/>
+      <button type="submit" class="btn btn-primary">Add Task</button>
+    </form>
+  </div>
+{% endblock %}

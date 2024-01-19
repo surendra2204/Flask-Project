@@ -1,0 +1,19 @@
+{% extends 'partials/base.html' %}
+{% block title %} Search Results {% endblock %}
+{% block content %}
+  <div class="container">
+    <h1>Search Results</h1>
+    <p>Search query: {{ query }}</p>
+    <hr>
+    {% if results %}
+      <h3>Results:</h3>
+      <ul>
+        {% for result in results %}
+          <li>{{ result.title }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No results found.</p>
+    {% endif %}
+  </div>
+{% endblock %}
